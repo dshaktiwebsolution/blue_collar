@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="89" height="89" viewBox="0 0 89 89">
+  <g id="Technologies" transform="translate(-898 -2104)">
+    <rect id="Rectangle_40" data-name="Rectangle 40" width="89" height="89" rx="12" transform="translate(898 2104)" fill="#219ebc" opacity="0.1"/>
+    <g id="monitor" transform="translate(924 2131)">
+      <path id="Path_76" data-name="Path 76" d="M30.333,3H7A5.028,5.028,0,0,0,2,8.055v8.425H35.333V8.055A5.028,5.028,0,0,0,30.333,3Z" transform="translate(0 0)" fill="#219ebc"/>
+      <path id="Path_77" data-name="Path 77" d="M2,14.685A5.028,5.028,0,0,0,7,19.74H17v3.37H10.333a1.685,1.685,0,0,0,0,3.37H27a1.685,1.685,0,0,0,0-3.37H20.333V19.74h10a5.028,5.028,0,0,0,5-5.055V13H2Z" transform="translate(0 6.521)" fill="#219ebc"/>
+    </g>
+  </g>
+</svg>

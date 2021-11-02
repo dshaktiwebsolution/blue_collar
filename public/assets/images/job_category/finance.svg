@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="89" height="89" viewBox="0 0 89 89">
+  <g id="Finance" transform="translate(-613 -2394)">
+    <rect id="Rectangle_46" data-name="Rectangle 46" width="89" height="89" rx="12" transform="translate(613 2394)" fill="#eb5d60" opacity="0.1"/>
+    <g id="credit-card" transform="translate(634 2419)">
+      <path id="Path_82" data-name="Path 82" d="M38.429,5h-30A6.429,6.429,0,0,0,2,11.429V28.571A6.429,6.429,0,0,0,8.429,35h30a6.429,6.429,0,0,0,6.429-6.429V11.429A6.429,6.429,0,0,0,38.429,5ZM21.286,26.429H12.714a2.143,2.143,0,1,1,0-4.286h8.571a2.143,2.143,0,0,1,0,4.286Zm12.857,0H29.857a2.143,2.143,0,0,1,0-4.286h4.286a2.143,2.143,0,0,1,0,4.286Zm6.429-12.857H6.286V11.429A2.143,2.143,0,0,1,8.429,9.286h30a2.143,2.143,0,0,1,2.143,2.143Z" transform="translate(0 0)" fill="#eb5d60"/>
+    </g>
+  </g>
+</svg>

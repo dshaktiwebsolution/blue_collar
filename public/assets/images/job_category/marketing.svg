@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="89" height="89" viewBox="0 0 89 89">
+  <g id="Marketing_" data-name="Marketing &amp;" transform="translate(-328 -2104)">
+    <rect id="Rectangle_36" data-name="Rectangle 36" width="89" height="89" rx="12" transform="translate(328 2104)" fill="#fb8500" opacity="0.1"/>
+    <g id="shopping-cart" transform="translate(354 2130)">
+      <path id="Path_72" data-name="Path 72" d="M34.157,9.714a3.373,3.373,0,0,0-2.865-1.678H9.719L8.742,4.242A1.685,1.685,0,0,0,7.056,3H3.685a1.678,1.678,0,1,0,0,3.357h2.09l4.652,17.219a1.685,1.685,0,0,0,1.685,1.242H27.281a1.686,1.686,0,0,0,1.5-.923l5.528-11.01a3.344,3.344,0,0,0-.152-3.172Z" transform="translate(0 0)" fill="#fb8500"/>
+      <circle id="Ellipse_8" data-name="Ellipse 8" cx="2.5" cy="2.5" r="2.5" transform="translate(8.731 27.999)" fill="#fb8500"/>
+      <circle id="Ellipse_9" data-name="Ellipse 9" cx="2.5" cy="2.5" r="2.5" transform="translate(25.45 27.999)" fill="#fb8500"/>
+    </g>
+  </g>
+</svg>

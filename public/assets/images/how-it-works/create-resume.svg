@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="114" height="112" viewBox="0 0 114 112">
+  <defs>
+    <filter id="Rectangle_31" x="0" y="0" width="114" height="112" filterUnits="userSpaceOnUse">
+      <feOffset dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-color="#3a6bea" flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Create_Resume" data-name="Create Resume" transform="translate(-602 -1361)">
+    <g transform="matrix(1, 0, 0, 1, 602, 1361)" filter="url(#Rectangle_31)">
+      <rect id="Rectangle_31-2" data-name="Rectangle 31" width="54" height="52" rx="10" transform="translate(30 20)" fill="#3a6bea"/>
+    </g>
+    <g id="file-text" transform="translate(647 1395)">
+      <path id="Path_65" data-name="Path 65" d="M15,16H9a1,1,0,0,0,0,2h6a1,1,0,0,0,0-2Z" fill="#fff"/>
+      <path id="Path_66" data-name="Path 66" d="M9,14h3a1,1,0,0,0,0-2H9a1,1,0,0,0,0,2Z" fill="#fff"/>
+      <path id="Path_67" data-name="Path 67" d="M19.74,8.33l-5.44-6A1,1,0,0,0,13.56,2h-7A2.53,2.53,0,0,0,4,4.5v15A2.53,2.53,0,0,0,6.56,22H17.44A2.53,2.53,0,0,0,20,19.5V9a1,1,0,0,0-.26-.67ZM14,5l2.74,3h-2A.79.79,0,0,1,14,7.15Zm3.44,15H6.56A.53.53,0,0,1,6,19.5V4.5A.53.53,0,0,1,6.56,4H12V7.15A2.79,2.79,0,0,0,14.71,10H18v9.5a.53.53,0,0,1-.56.5Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>

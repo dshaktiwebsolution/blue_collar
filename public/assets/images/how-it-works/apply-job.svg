@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="114" height="112" viewBox="0 0 114 112">
+  <defs>
+    <filter id="Rectangle_31" x="0" y="0" width="114" height="112" filterUnits="userSpaceOnUse">
+      <feOffset dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-color="#3a6bea" flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Apply_Job" data-name="Apply Job" transform="translate(-1176 -1361)">
+    <g transform="matrix(1, 0, 0, 1, 1176, 1361)" filter="url(#Rectangle_31)">
+      <rect id="Rectangle_31-2" data-name="Rectangle 31" width="54" height="52" rx="10" transform="translate(30 20)" fill="#3a6bea"/>
+    </g>
+    <g id="done-all" transform="translate(1218.02 1394.006)">
+      <path id="Path_69" data-name="Path 69" d="M20.083,6.264a1.257,1.257,0,0,0-1.768.212L9.538,17.72,5.237,12.5a1.252,1.252,0,1,0-1.956,1.562L8.51,20.531a1.321,1.321,0,0,0,2.019-.012L20.346,8.025a1.246,1.246,0,0,0-.263-1.761Z" fill="#fff"/>
+      <path id="Path_70" data-name="Path 70" d="M24.049,6.264a1.228,1.228,0,0,0-1.743.212L13.652,17.72l-.754-.937L11.34,18.807l1.36,1.712a1.227,1.227,0,0,0,1.929-.012l9.68-12.493a1.258,1.258,0,0,0-.26-1.749Z" transform="translate(2.222 0)" fill="#fff"/>
+      <path id="Path_71" data-name="Path 71" d="M8.879,13.6l1.595-2-.247-.3a1.231,1.231,0,1,0-1.953,1.5Z" transform="translate(1.258 1.209)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

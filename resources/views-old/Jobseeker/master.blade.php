@@ -1,0 +1,1 @@
+@include('Jobseeker.header')@yield("body")@include('Jobseeker.footer')@yield('script')

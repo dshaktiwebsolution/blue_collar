@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="9.233" height="11.341" viewBox="0 0 9.233 11.341">
+  <g id="delet_icon" data-name="delet icon" transform="translate(-12.267 -8.942)">
+    <g id="Icon-Trash" transform="translate(12.267 8.942)">
+      <path id="Fill-6" d="M-207.5-205.1h.71v5.682h-.71Z" transform="translate(210.341 208.628)" fill="#eb5d60"/>
+      <path id="Fill-7" d="M-201.5-205.1h.71v5.682h-.71Z" transform="translate(205.762 208.628)" fill="#eb5d60"/>
+      <path id="Fill-8" d="M-195.5-205.1h.71v5.682h-.71Z" transform="translate(201.182 208.628)" fill="#eb5d60"/>
+      <path id="Fill-9" d="M-219.5-214.1h9.233v.71H-219.5Z" transform="translate(219.5 215.497)" fill="#eb5d60"/>
+      <path id="Fill-10" d="M-203.9-218.248h-.663v-.71a.374.374,0,0,0-.379-.379h-1.421a.374.374,0,0,0-.379.379v.71h-.663v-.71A1.051,1.051,0,0,1-206.358-220h1.421a1.051,1.051,0,0,1,1.042,1.042v.71" transform="translate(210.265 220)" fill="#eb5d60"/>
+      <path id="Fill-11" d="M-210.463-203.088h-4.262a1.149,1.149,0,0,1-1.113-1.042l-.663-8.523.71-.047.663,8.523a.429.429,0,0,0,.4.379h4.262a.412.412,0,0,0,.4-.379l.663-8.523.71.047-.663,8.523a1.13,1.13,0,0,1-1.113,1.042" transform="translate(217.21 214.428)" fill="#eb5d60"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="114" height="112" viewBox="0 0 114 112">
+  <defs>
+    <filter id="Rectangle_31" x="0" y="0" width="114" height="112" filterUnits="userSpaceOnUse">
+      <feOffset dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-color="#3a6bea" flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Find_Jobs" data-name="Find Jobs" transform="translate(-889 -1361)">
+    <g transform="matrix(1, 0, 0, 1, 889, 1361)" filter="url(#Rectangle_31)">
+      <rect id="Rectangle_31-2" data-name="Rectangle 31" width="54" height="52" rx="10" transform="translate(30 20)" fill="#3a6bea"/>
+    </g>
+    <g id="search" transform="translate(933 1394)">
+      <path id="Path_68" data-name="Path 68" d="M22.671,21.094l-3.777-3.765a8.8,8.8,0,0,0,1.877-5.443,8.886,8.886,0,1,0-8.886,8.886,8.8,8.8,0,0,0,5.443-1.877l3.765,3.777a1.115,1.115,0,1,0,1.577-1.577ZM5.222,11.886a6.665,6.665,0,1,1,6.665,6.665,6.665,6.665,0,0,1-6.665-6.665Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>

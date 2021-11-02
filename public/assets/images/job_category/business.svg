@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="89" height="89" viewBox="0 0 89 89">
+  <g id="Business" transform="translate(-613 -2104)">
+    <rect id="Rectangle_38" data-name="Rectangle 38" width="89" height="89" rx="12" transform="translate(613 2104)" fill="#1f3c88" opacity="0.1"/>
+    <g id="briefcase" transform="translate(639 2131)">
+      <path id="Path_73" data-name="Path 73" d="M7,33H23.687V9.667H22.018v-2.5A4.169,4.169,0,0,0,17.847,3H12.84A4.169,4.169,0,0,0,8.669,7.167v2.5H7ZM12.006,7.167a.834.834,0,0,1,.834-.833h5.006a.834.834,0,0,1,.834.833v2.5H12.006Z" transform="translate(3.323 0)" fill="#1f3c88"/>
+      <path id="Path_74" data-name="Path 74" d="M19,7V30.362a5.006,5.006,0,0,0,5.006-5.006V12.006A5.006,5.006,0,0,0,19,7Z" transform="translate(11.327 2.638)" fill="#1f3c88"/>
+      <path id="Path_75" data-name="Path 75" d="M7.006,7A5.006,5.006,0,0,0,2,12.006v13.35a5.006,5.006,0,0,0,5.006,5.006Z" transform="translate(0 2.638)" fill="#1f3c88"/>
+    </g>
+  </g>
+</svg>
