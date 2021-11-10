@@ -23,7 +23,7 @@
                                 <div class="profile-image">
                                     <img src="public/assets/images/default-user.png" class="profile-main-image" alt="">
                                 </div>
-                                <h5>Alex John</h5>
+                                <h5>{{ auth()->user()->name }}</h5>
                             </div>
                         </div>
                     </div>
@@ -35,49 +35,48 @@
                                     <div class="col-md-6 mb-3">
                                         <div class="form-set-data">
                                             <div class="set-label">Enter name</div>
-                                            <div class="set-input">Blue Collar</div>
+                                            <div class="set-input">{{ auth()->user()->name }}</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-set-data">
                                             <div class="set-label">Mobile no</div>
-                                            <div class="set-input">+91 99*** ***00</div>
+                                            <div class="set-input">+91 {{ auth()->user()->mobile_number }}</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-set-data">
                                             <div class="set-label">Email ID</div>
-                                            <div class="set-input">BlueCollar@gmail.com</div>
+                                            <div class="set-input">{{ auth()->user()->email }}</div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-set-data">
-                                            <div class="set-label">Company name</div>
-                                            <div class="set-input">Bluecollar technology</div>
+
+                                    @if (auth()->user()->user_type == 0)
+                                        
+                                        <div class="col-md-6 mb-3">
+                                            <div class="form-set-data">
+                                                <div class="set-label">Company name</div>
+                                                <div class="set-input">{{ auth()->user()->company_name }}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12 mb-3">
-                                        <div class="form-set-data">
-                                            <div class="set-label">About Company</div>
-                                            <div class="set-input">Bluecollar technology is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. </div>
+                                        <div class="col-md-12 mb-3">
+                                            <div class="form-set-data">
+                                                <div class="set-label">About Company</div>
+                                                <div class="set-input">{{ auth()->user()->about_company }}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-set-data">
-                                            <div class="set-label">Password</div>
-                                            <div class="set-input">12345567</div>
-                                        </div>
-                                    </div>
+
+                                    @endif
                                     <div class="col-md-6 mb-3">
                                         <div class="form-set-data">
                                             <div class="set-label">State</div>
-                                            <div class="set-input">Gujarat</div>
+                                            <div class="set-input">{{ \DB::table('states')->where('id', auth()->user()->state)->value('name'); }}</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-set-data">
                                             <div class="set-label">City</div>
-                                            <div class="set-input">Surat</div>
+                                            <div class="set-input">{{ \DB::table('cities')->where('id', auth()->user()->city)->value('name'); }}</div>
                                         </div>
                                     </div>
                                 </div>

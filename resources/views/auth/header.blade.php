@@ -33,6 +33,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/style.css" />
 
     @yield('header')
+
+    <style>
+        label.error{
+            color: red;
+        }
+    </style>
 </head>
 
  <body class="no-footer header-white">

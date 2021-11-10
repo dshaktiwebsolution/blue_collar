@@ -22,19 +22,17 @@
                 </div>
             </div>
             <div class="container">
-                <form action="javascript:void(0);">
+                <form id="individual_reg_form" action="{{ url('/employerupdateprofile') }}" method="POST">
+
+                    @csrf
                     <div class="row">
                         <div class="col-lg-4 mb-box">
                             <div class="dash-data-card h-100 mb-0 min-height">
                                 <div class="profile-area border-0 employer-profile">
                                     <div class="profile-image">
                                         <img src="public/assets/images/default-user.png" alt="" class="profile-main-image" id="profileimg" />
-                                        <div class="profile-change-btn">
-                                            <input accept="image/*" type="file" class="profileinput" />
-                                            <img src="public/assets/images/dashboard/profile/edit-icon.png" alt="" />
-                                        </div>
                                     </div>
-                                    <h5>Alex John</h5>
+                                    <h5>{{ auth()->user()->name }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +45,7 @@
                                             <div class="form-group floating-group">
                                                 <div class="input-icon-right">
                                                     <label class="floating-label">Enter name</label>
-                                                    <input type="text" class="form-control floating-control" value="Blue Collar" />
+                                                    <input type="text" name="name" class="form-control floating-control" value="{{ auth()->user()->name }}" required />
                                                     <div class="right-icon">
                                                         <img src="public/assets/images/auth-icon/user.png" class="input-img" alt="" />
                                                     </div>
@@ -58,7 +56,7 @@
                                             <div class="form-group floating-group">
                                                 <div class="input-icon-right">
                                                     <label class="floating-label">Mobile number</label>
-                                                    <input type="text" class="form-control floating-control" value="+91 99*** ***00" />
+                                                    <input type="text" name="mobile_number" id="mobile_number" class="form-control floating-control" value="{{ auth()->user()->mobile_number }}" required />
                                                     <div class="right-icon">
                                                         <img src="public/assets/images/auth-icon/mobile.png" class="input-img" alt="" />
                                                     </div>
@@ -69,67 +67,60 @@
                                             <div class="form-group floating-group">
                                                 <div class="input-icon-right">
                                                     <label class="floating-label">Email ID</label>
-                                                    <input type="text" class="form-control floating-control" value="BlueCollar@gmail.com" />
+                                                    <input type="text" name="email" id="email" class="form-control floating-control" value="{{ auth()->user()->email }}" required />
                                                     <div class="right-icon">
                                                         <img src="public/assets/images/auth-icon/email.png" class="input-img" alt="" />
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group floating-group">
-                                                <div class="input-icon-right">
-                                                    <label class="floating-label">Company name</label>
-                                                    <input type="text" class="form-control floating-control" value="Bluecollar technology" />
-                                                    <div class="right-icon">
-                                                        <img src="public/assets/images/auth-icon/users.png" class="input-img" alt="" />
+
+                                        @if (auth()->user()->user_type == 0)
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group floating-group">
+                                                    <div class="input-icon-right">
+                                                        <label class="floating-label">Company name</label>
+                                                        <input type="text" class="form-control floating-control" value="{{ auth()->user()->company_name }}" />
+                                                        <div class="right-icon">
+                                                            <img src="public/assets/images/auth-icon/users.png" class="input-img" alt="" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group floating-group">
-                                                <div class="input-icon-right">
-                                                    <label class="floating-label">Password</label>
-                                                    <input type="text" class="form-control floating-control" value="12345567" />
-                                                    <div class="right-icon">
-                                                        <img src="public/assets/images/auth-icon/lock.png" class="input-img" alt="" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            
+                                        @endif
                                         <div class="col-md-6">
                                             <div class="form-group select2Part floating-group">
                                                 <div class="input-icon-right">
                                                     <label class="floating-label">State</label>
-                                                    <select name="" id="" class="form-control customSelect floating-control">
-                                                        <option value="">State</option>
-                                                        <option value="State 1" selected>Gujarat</option>
-                                                        <option value="State 2">State 2</option>
-                                                        <option value="State 3">State 3</option>
-                                                        <option value="State 4">State 4</option>
+                                                    <select name="state_id" id="state" class="form-control customSelect floating-control" required>
+                                                        @foreach ($states as $item)
+                                                            <option value="{{ $item->id }}" {{ $item->id == auth()->user()->state ? "selected" : "" }}>{{ $item->name }}</option>
+                                                        @endforeach
                                                     </select>
                                                     <div class="right-icon">
                                                         <img src="public/assets/images/auth-icon/select.png" class="input-img" alt="" />
                                                     </div>
                                                 </div>
+                                                <div></div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group select2Part floating-group">
                                                 <div class="input-icon-right">
                                                     <label class="floating-label">City</label>
-                                                    <select name="" id="" class="form-control customSelect floating-control">
+                                                    <select name="city_id" id="city" class="form-control customSelect floating-control" autocomplete="off" required>
                                                         <option value="">City</option>
-                                                        <option value="City 1" selected>Surat</option>
-                                                        <option value="City 2">City 2</option>
-                                                        <option value="City 3">City 3</option>
-                                                        <option value="City 4">City 4</option>
+                                                        @foreach ($cities as $item)
+                                                            <option value="{{ $item->id }}" {{ $item->id == auth()->user()->city ? "selected" : "" }}>{{ $item->name }}</option>
+                                                        @endforeach
                                                     </select>
                                                     <div class="right-icon">
                                                         <img src="public/assets/images/auth-icon/select.png" class="input-img" alt="" />
                                                     </div>
                                                 </div>
+                                                <div></div>
                                             </div>
                                         </div>
                                     </div>
@@ -149,4 +140,92 @@
             </div>
         </section>
     </div>
+@endsection
+
+
+@section('script')
+   <script>
+        $(document).ready(function () {
+
+            EMAIL = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}/;
+            NUMBER = /^[0-9 ]*$/;
+
+            $('#individual_reg_form').validate({
+                rules: {
+                    email: {
+                        pattern: EMAIL,
+                        maxlength: 90,
+                        remote: {
+                                type: 'get',
+                                url: '{{ route("check_email_exists_in_users") }}',
+                                data: {
+                                    'email': function () {return $("#email").val(); }
+                                },
+                                dataFilter: function (data) {
+                                var json = JSON.parse(data);
+                                console.log(json.message)
+                                if (json.status == 0) {
+                                    return "\"" + json.message + "\"";
+                                } else {
+                                    return 'true';
+                                }
+                            }
+                        }
+                    },
+                    mobile_number: {
+                        required: true, 
+                        minlength:10,                       
+                        pattern: NUMBER,
+                        maxlength: 10,
+                        remote: {
+                            type: 'get',
+                            url: '{{ route("check_mobile_number_exists_in_users") }}',
+                            data: {
+                                'mobile_number': function () {return $("#mobile_number").val(); }
+                            },
+                            dataFilter: function (data) {
+                                var json = JSON.parse(data);
+                                if (json.status == 0) {
+                                    return "\"" + json.message + "\"";
+                                } else {
+                                    return 'true';
+                                }
+                            }
+                        }
+                    },
+                },
+                errorPlacement: function (error, element) {
+                    if (element.attr("name") == "state"){
+                    error.appendTo( element.parent("div").next("div") );
+                    } else if (element.attr("name") == "city"){
+                    error.appendTo( element.parent("div").next("div") );
+                    } else {
+                    error.insertAfter(element);
+                    }
+                }
+            });
+
+            $("#state").on('change', function() {
+                var state_id = $(this).val();
+                if(state_id) {
+                    $.ajax({
+                        url: '{{ route("get_city_by_state_id") }}',
+                        type: "GET",
+                        data: { state_id: state_id },
+                        success:function(response) {
+
+                            $("#city").empty();
+                            $.each(response, function(key, value) {
+                                $("#city").append('<option value="'+ value.id +'">'+ value.name +'</option>');
+                            });
+
+
+                        }
+                    });
+                }else{
+                    $("#city").empty();
+                }
+            });
+        });
+    </script>
 @endsection

@@ -46,6 +46,7 @@
                                     <div class="input-icon-right">
                                         <label class="floating-label">Mobile number</label>
                                         <input type="text" class="form-control floating-control" name="mobile_number">
+                                        @error('mobile_number')<span style="color:red">{{$message}}</span> @enderror
                                         <div class="right-icon">
                                             <img src="{{ asset('assets') }}/images/auth-icon/email.png"
                                                 class="input-img" alt="">

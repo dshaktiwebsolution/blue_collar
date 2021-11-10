@@ -220,12 +220,28 @@ class Employer extends Controller
     }
     public function employereditprofile()
     {
-        return view('Employer/employereditprofile');
+        $states = \DB::table('states')->where('country_id', 101)->get();
+        $cities = \DB::table('cities')->where('id', auth()->user()->city)->get();
+        return view('Employer/employereditprofile', compact('states', 'cities'));
     }
     public function employerviewprofile()
     {
         return view('Employer/employerviewprofile');
     }
+
+    public function employerupdateprofile(Request $request){
+
+        $data = array(
+            "name" => $request->name,
+            "mobile_number" => $request->mobile_number,
+            "email" => $request->email,
+            "state" => $request->state_id,
+            "city" => $request->city_id,
+        );
+        User::whereId(auth()->user()->id)->update($data);
+        return redirect('employerviewprofile')->withSuccess('Your profile successfully updated.');
+    }
+
     public function active_jobs()
     {
         

@@ -18,6 +18,7 @@ Route::get('/',[HomeController::class, 'index'])->name('home');
 
 Route::get('/signup',[HomeController::class,'signup']);
 Route::get('/signup-company',[HomeController::class,'signup_company']);
+Route::get('/get_city',[HomeController::class,'get_city_by_state_id'])->name('get_city_by_state_id');
 Route::get('/signup-person',[HomeController::class,'signup_person']);
 Route::get('/signup-jobs',[HomeController::class,'signup_jobs']);
 Route::post('/company',[HomeController::class,'company']);
@@ -28,6 +29,8 @@ Route::get('/job-login',[HomeController::class,'job_login']);
 Route::post('/empcheck',[HomeController::class,'empcheck'])->name('empcheck');
 Route::post('/jobcheck',[HomeController::class,'jobcheck'])->name('jobcheck');
 Route::post('/verify_job_otp',[HomeController::class,'verify_job_otp'])->name('verify_job_otp');
+Route::get('/check_email_exists_in_users',[HomeController::class,'check_email_exists_in_users'])->name('check_email_exists_in_users');
+Route::get('/check_mobile_number_exists_in_users',[HomeController::class,'check_mobile_number_exists_in_users'])->name('check_mobile_number_exists_in_users');
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name("auth_gogole");
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name("google_auth_callback");
@@ -54,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/inactive-jobs',[Employer::class,'inactive_jobs']);
     Route::get('/employer-dashboard',[Employer::class,'employer_dashboard']);
     Route::get('/employereditprofile',[Employer::class,'employereditprofile']);
+    Route::post('/employerupdateprofile',[Employer::class,'employerupdateprofile']);
     Route::get('/active-jobs',[Employer::class,'active_jobs']);
     Route::get('/candidate-job',[Employer::class,'candidate_job']);
     Route::get('/candidate-detail',[Employer::class,'candidate_detail']);

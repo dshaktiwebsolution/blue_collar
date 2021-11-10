@@ -33,6 +33,13 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/quill-snow.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/croppie.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/style.css" />
+
+    
+    <style>
+        label.error{
+            color: red;
+        }
+    </style>
 </head>
 
 <body class="dashboard-page header-white">

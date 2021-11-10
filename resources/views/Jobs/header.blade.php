@@ -52,7 +52,7 @@
     <div class="container">
         <div class="header-part">
             <div class="logo-part">
-                <a href="{{url('/jobs-dashboard')}}">
+                <a href="{{url('/')}}">
                     <h5>Blue Collar</h5>
                 </a>
             </div>
@@ -81,7 +81,7 @@
                             <div class="header-profile-user" data-toggle="dropdown" data-display="static">
                                 <a href="javascript:void(0);">
                                     <img src="{{asset('assets')}}/images/default-user.png" alt="" class="profile-img">
-                                    <span>Alex John</span>
+                                    <span>{{ auth()->user()->first_name ." ". auth()->user()->last_name }}</span>
                                 </a>
                             </div>
                             <div class="dropdown-menu">

@@ -50,7 +50,7 @@
     <div class="container">
         <div class="header-part">
             <div class="logo-part">
-                <a href="{{url('/inactive')}}">
+                <a href="{{url('/')}}">
                     <h5>Blue Collar</h5>
                 </a>
             </div>

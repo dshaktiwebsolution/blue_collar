@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 
 class HomeController extends Controller
@@ -45,14 +46,18 @@ class HomeController extends Controller
             return redirect()->back();
         }
 
-        return view('auth/employer/signup-company');
+        $states = \DB::table('states')->where('country_id', 101)->get();
+
+        return view('auth/employer/signup-company', compact('states'));
     }
     public function signup_person()
     {
         if (Auth::check()) {
             return redirect()->back();
         }
-        return view('auth/employer/signup-person');
+
+        $states = \DB::table('states')->where('country_id', 101)->get();
+        return view('auth/employer/signup-person', compact('states'));
     }
     public function signup_jobs()
     {
@@ -77,7 +82,6 @@ class HomeController extends Controller
 
         if($request->user_type == 0){
             $validator['company_name'] = 'required';
-            $validator['about_company'] = 'required';
             $validator['web-site'] = 'required';
         }
 
@@ -179,14 +183,18 @@ class HomeController extends Controller
 
     public function jobcheck(Request $request){
         
-        $user = User::whereMobileNumber($request->mobile_number)->first();
+        $request->validate([
+            'mobile_number'=>'required',
+        ]);
+
+        $user = User::whereMobileNumber($request->mobile_number)->whereUserType(2)->first();
        
         if (!empty($user)) {
             $data['verify_otp'] = '1234';
             User::whereId($user->id)->update($data);
             return view("auth/jobs/verify_job_otp", compact('user'));
         }
-        return redirect("/employer-login")->with('error', 'E-Mail Id and Password Invalid');
+        return back()->with('error', 'Wrong mobile number.');
     }
 
     public function verify_job_otp(Request $request){
@@ -206,6 +214,87 @@ class HomeController extends Controller
         
     }
    
+    public function check_email_exists_in_users(Request $request){
+        $id = '';
+        if(Auth()->user()){
+            $id = Auth()->user()->id;
+        }
+
+        if($id != ""){
+            $rules = [
+                'email'=> 'required|email|unique:users,email,'.$id.',id',
+            ];
+        } else {
+            $rules = [
+                'email'=> 'required|email|unique:users,email',
+            ];
+        }
+        
+        $validator = \Validator::make($request->all(), $rules);
+        if ($validator->fails())
+        {
+            $res = [
+                'message' => $validator->errors()->all()[0],
+                'status' => 0,
+            ];
+        
+            return $res; 
+        }
+
+        $res = [
+            'message' => 'success',
+            'status' => 1,
+        ];
+    
+        return $res;
+    }
+   
+    public function check_mobile_number_exists_in_users(Request $request){
+
+        $id = '';
+        if(Auth()->user()){
+            $id = Auth()->user()->id;
+        }
+
+        if($id != ""){
+            $rules = [
+                'mobile_number'=> 'required|numeric|digits_between:10,10|unique:users,mobile_number,'.$id.',id',
+            ];
+        } else {
+            $rules = [
+                'mobile_number'=> 'required|numeric|digits_between:10,10|unique:users,mobile_number',
+            ];
+        }
+        
+        $msg = [
+            'mobile_number.digits_between'=>'The mobile number must be 10 digits.',
+        ];
+        $validator = \Validator::make($request->all(), $rules, $msg);
+        if ($validator->fails())
+        {
+            $res = [
+                'message' => $validator->errors()->all()[0],
+                'status' => 0,
+            ];
+        
+            return $res; 
+        }
+
+        $res = [
+            'message' => 'success',
+            'status' => 1,
+        ];
+    
+        return $res;
+    }
+
+    public function get_city_by_state_id(Request $request){
+        
+        $cities = \DB::table('cities')->where('state_id', $request->state_id)->get();
+
+        return response()->json($cities);
+    }
+
     public function logout() {
         Session::flush();
         Auth::logout();

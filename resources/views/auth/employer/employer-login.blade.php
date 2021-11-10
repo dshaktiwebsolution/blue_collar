@@ -81,12 +81,12 @@
                             <div class="col-md-12 p-0">
                                 <div class="auth-social">
                                     <ul>
-                                        <li><a href="javascript:void(0);" class="fb-btn"><img
+                                        <li><a href="{{ route('auth_facebook') }}" class="fb-btn"><img
                                                     src="{{ asset('assets') }}/images/auth-social/fb.png" alt=""></a></li>
-                                        <li><a href="javascript:void(0);" class="gle-btn"><img
+                                        <li><a href="{{ route('auth_gogole') }}" class="gle-btn"><img
                                                     src="{{ asset('assets') }}/images/auth-social/google.png" alt=""></a>
                                         </li>
-                                        <li><a href="javascript:void(0);" class="lin-btn"><img
+                                        <li><a href="{{ route('auth_linkedin') }}" class="lin-btn"><img
                                                     src="{{ asset('assets') }}/images/auth-social/linkedin.png" alt=""></a>
                                         </li>
                                         <li><a href="javascript:void(0);" class="mob-btn"><img

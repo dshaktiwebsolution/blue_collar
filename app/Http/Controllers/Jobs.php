@@ -15,6 +15,8 @@ class Jobs extends Controller
 
     public function jobs_dashboard()
     {
+        $skills = explode(",", auth()->user()->skills);
+
         $user = auth()->user();
                 $all_job_ids    = array();
 
@@ -24,7 +26,14 @@ class Jobs extends Controller
         $data['count']              =   Job::where('job_status','=','1')->count();
         $data['applied_job_count']  =   UserJob::where('user_id','=',$user_id)->where('action','=','applied_job')->count();
         $data['saved_job_count']    =   UserJob::where('user_id','=',$user_id)->where('action','=','save_job')->count();
-        $data['job_based_skills']   =   Job::orderBy('id', 'DESC')->paginate(5);
+        $data['job_based_skills']   =   Job::orderBy('id', 'DESC')->when($skills, function ($query, $skills) {
+            foreach($skills as $value){
+                return $query->where('skills', 'like', '%'.$value.'%');
+            }
+            
+        })->simplePaginate(5);
+
+
         $current_users_job      = Job::where('employer_id',"=",$user_id)->get();
 
         if(!empty($current_users_job)){

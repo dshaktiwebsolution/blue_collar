@@ -78,7 +78,7 @@
                                         <a href="javascript:void(0);">
                                             <img src="{{ asset('assets') }}/images/default-user.png" alt=""
                                                 class="profile-img">
-                                            <span>{{ auth()->user()->name }}</span>
+                                            <span>{{ auth()->user()->user_type == 2 ? auth()->user()->first_name ." ". auth()->user()->last_name : auth()->user()->name }}</span>
                                         </a>
                                     </div>
                                     <div class="dropdown-menu">
