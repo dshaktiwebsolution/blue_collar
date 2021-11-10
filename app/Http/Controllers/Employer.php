@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use App\Models\User;
 use App\Models\UserJob;
+use App\Models\Uimage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -233,12 +234,38 @@ class Employer extends Controller
 
         $data = array(
             "name" => $request->name,
+            "company_name" => $request->company_name,
+            "about_company" => $request->about_company,
             "mobile_number" => $request->mobile_number,
             "email" => $request->email,
             "state" => $request->state_id,
             "city" => $request->city_id,
         );
         User::whereId(auth()->user()->id)->update($data);
+
+        if($request->hasfile('image'))
+        {
+            $image=$request->file('image');
+            $uimages_data['u_id'] = auth()->user()->id;
+            $path = public_path('/assets/photo/pic');
+            $image_name = time().'.'.$image->extension();
+            $image->move($path,$image_name);
+
+            $uimages_data['image'] = $image_name;
+
+            $uimages = Uimage::whereUId(auth()->user()->id)->first();
+
+            if(!empty($uimages) && $uimages->image != ""){
+                if(file_exists(public_path('assets/photo/pic/'.$uimages->image))){
+                    unlink(public_path('assets/photo/pic/'.$uimages->image));
+                }
+                Uimage::whereUId(auth()->user()->id)->update($uimages_data);
+            } else {
+                Uimage::create($uimages_data);
+            }
+
+        }
+
         return redirect('employerviewprofile')->withSuccess('Your profile successfully updated.');
     }
 
