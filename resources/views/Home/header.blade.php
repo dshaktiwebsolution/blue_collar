@@ -72,30 +72,45 @@
                     <ul class="d-flex align-items-center">
                         <div class="login-button-group">
                             @auth
-                            <li>
-                                <div class="profile_log dropdown">
-                                    <div class="header-profile-user" data-toggle="dropdown" data-display="static">
-                                        <a href="javascript:void(0);">
-                                            <img src="{{ asset('assets') }}/images/default-user.png" alt=""
-                                                class="profile-img">
-                                            <span>{{ auth()->user()->user_type == 2 ? auth()->user()->first_name ." ". auth()->user()->last_name : auth()->user()->name }}</span>
-                                        </a>
-                                    </div>
-                                    <div class="dropdown-menu">
-                                        <div class="actions-links-data">
-                                            <ul>
-                                                <li><a href="{{ url('/employerviewprofile') }}">View Profile</a></li>
-                                                <li>
-                                                    <form id="logout_form" action="{{ route('logout') }}" method="post">
-                                                        @csrf
-                                                        <a href="javascript:{}" onclick="document.getElementById('logout_form').submit();">Logout</a>
-                                                    </form>
-                                                </li>
-                                            </ul>
+                                <li>
+                                    <div class="profile_log dropdown">
+                                        <div class="header-profile-user" data-toggle="dropdown" data-display="static">
+                                            <a href="javascript:void(0);">
+                                                @if (!empty(auth()->user()->uimage) && file_exists(public_path("assets/photo/pic/". auth()->user()->uimage->image)))
+                                                    <img src="public/assets/photo/pic/{{ auth()->user()->uimage->image }}"
+                                                        class="profile-img">
+                                                @else
+                                                    <img src="{{ asset('assets') }}/images/default-user.png" alt=""
+                                                        class="profile-img">
+                                                @endif
+                                                <span>{{ auth()->user()->user_type == 2 ? auth()->user()->first_name . ' ' . auth()->user()->last_name : auth()->user()->name }}</span>
+                                            </a>
+                                        </div>
+                                        <div class="dropdown-menu">
+                                            <div class="actions-links-data">
+                                                <ul>
+                                                    @if (auth()->user()->user_type == 0 || auth()->user()->user_type == 1)
+                                                        <li><a href="{{ url('/employerviewprofile') }}">View Profile</a>
+                                                        </li>
+                                                    @endif
+
+                                                    @if (auth()->user()->user_type == 2)
+                                                        <li><a href="{{ url('/jobsviewprofile') }}">View Profile</a>
+                                                        </li>
+                                                    @endif
+                                                    <li>
+                                                        <form id="logout_form" action="{{ route('logout') }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <a href="javascript:{}"
+                                                                onclick="document.getElementById('logout_form').submit();">Logout</a>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
                                 {{-- <a class="header-btn signup-btn" href="{{ url('/employer-dashboard') }}"><i
                                         class="fas fa-sign-in-alt mr-1"></i> <span>My Account</span></a> --}}
                             @else

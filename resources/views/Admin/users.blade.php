@@ -34,7 +34,6 @@
                                             <th class="all">Mobile</th>
                                             <th class="all">Gender</th>
                                             <th class="all">Photo</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -48,7 +47,7 @@
                                                 <td>{{ $val->gender }}</td>
                                                 <td>
                                                     @if (!empty($val->uimage) && file_exists(public_path("assets/photo/pic/". $val->uimage->image)))
-                                                        <img src="public/assets/photo/pic/{{ $val->uimage->image }}" width="100px">
+                                                        <img src="public/assets/photo/pic/{{ $val->uimage->image }}" width="50px" height="50px">
                                                     @endif
                                                 </td>
                                             </tr>

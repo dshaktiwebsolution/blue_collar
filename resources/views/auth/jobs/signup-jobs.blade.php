@@ -22,7 +22,7 @@
                 <div class="page-ath-title">
                     <h2>Sign up as a Job Seeker</h2>
                     <div class="form-footer-link">
-                        <p>Already a member? <a href="{{ url('/job-login') }}l">Log in</a></p>
+                        <p>Already a member? <a href="{{ url('/job-login') }}">Log in</a></p>
                     </div>
                     <div class="row">
                         <div class="col-md-12">

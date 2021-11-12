@@ -86,7 +86,14 @@
                         <div class="profile_log dropdown">
                             <div class="header-profile-user" data-toggle="dropdown" data-display="static">
                                 <a href="javascript:void(0);">
-                                    <img src="{{asset('assets')}}/images/default-user.png" alt="" class="profile-img">
+                                    @if (!empty(auth()->user()->uimage) && file_exists(public_path("assets/photo/pic/". auth()->user()->uimage->image)))
+                                                    <img src="public/assets/photo/pic/{{ auth()->user()->uimage->image }}"
+                                                        class="profile-img">
+                                                @else
+                                                    <img src="{{ asset('assets') }}/images/default-user.png"
+              
+                                                    class="profile-img">
+                                                @endif
                                     <span>{{ auth()->user()->first_name ." ". auth()->user()->last_name }}</span>
                                 </a>
                             </div>

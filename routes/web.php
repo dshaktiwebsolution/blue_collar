@@ -58,7 +58,7 @@ Route::middleware(['auth','checkUserType:3'])->group(function () {
     Route::get('/users',[Admin::class,'users']);
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware(['auth','checkUserType:0,1'])->group(function () {
 
     Route::get('/employer-edit-post/{job_slug}',[Employer::class,'employereditpost']);
     Route::post('/frompost',[Employer::class,'frompost']);
@@ -76,7 +76,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/employer-delete-post/{id}',[Employer::class,'employer_delete_post']);
     Route::get('/employer-repost-job/{id}',[Employer::class,'employer_repost_job']);
 
+});
 
+
+Route::middleware(['auth','checkUserType:2'])->group(function () {
     Route::get('/jobs-dashboard',[Jobs::class,'jobs_dashboard']);
     Route::get('/jobs',[Jobs::class,'jobs']);
     Route::post('/jobs',[Jobs::class,'jobs']);

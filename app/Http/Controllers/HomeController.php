@@ -158,14 +158,14 @@ class HomeController extends Controller
     }
     public function employer_login()
     {
-        if (Auth::check()) {
+        if (Auth::check() && auth()->user()->user_type == '0' || auth()->user()->user_type == '1') {
             return redirect()->back();
         }
         return view("auth/employer/employer-login");
     }
     public function job_login()
     {
-        if (Auth::check()) {
+        if (Auth::check() && auth()->user()->user_type == '2') {
             return redirect()->back();
         }
         return view("auth/jobs/job-login");
