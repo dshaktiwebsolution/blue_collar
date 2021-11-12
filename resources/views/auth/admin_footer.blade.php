@@ -130,7 +130,7 @@
                                     </div>
                                 </div>
                                 <div class="sign-btn-box">
-                                    <a href="signup-as-company.html" class="default-btn">Register now</a>
+                                    <a href="{{url('/signup-company')}}" class="default-btn">Register now</a>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +146,7 @@
                                     </div>
                                 </div>
                                 <div class="sign-btn-box">
-                                    <a href="signup-as-personal.html" class="default-btn">Register now</a>
+                                    <a href="{{url('/signup-person')}}" class="default-btn">Register now</a>
                                 </div>
                             </div>
                         </div>

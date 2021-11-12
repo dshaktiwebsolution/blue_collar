@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\User;
+use App\Models\Uimage;
 use App\Models\UserJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -349,6 +351,52 @@ class Jobs extends Controller
     public function jobseditprofile()
     {
         return view('Jobs/jobseditprofile');
+    }
+
+    public function jobsupdateprofile(Request $request){
+       
+        $user = array(
+            "mobile_number" => $request->mobile_number,
+            "email" => $request->email,
+            "job_profile" => $request->job_profile,
+            "job_city" => $request->job_city,
+            "education" => $request->education,
+            "curlast_company" => $request->curlast_company,
+            "job_time" => $request->job_time,
+            "salary" => $request->salary,
+            "language" => $request->language,
+            "age" => $request->age,
+            "gender" => $request->gender,
+            "skills" => implode(",", $request->skills),
+        );
+
+        User::whereId(auth()->user()->id)->update($user);
+
+        $image_name = "";
+
+        if($request->hasfile('image'))
+        {
+            $image=$request->file('image');
+            $data['u_id'] = auth()->user()->id;
+            $path = public_path('/assets/photo/pic');
+            $image_name = time().'.'.$image->extension();
+            $image->move($path, $image_name);
+
+            $data['image'] = $image_name;
+            $uimages = Uimage::whereUId(auth()->user()->id)->first();
+            if(!empty($uimages) && $uimages->image != ""){
+                if(file_exists(public_path('assets/photo/pic/'.$uimages->image))){
+                    unlink(public_path('assets/photo/pic/'.$uimages->image));
+                }
+
+                Uimage::whereUId(auth()->user()->id)->update($data);
+            } else {
+                Uimage::create($data);
+            }
+        }
+        
+        return redirect('/jobsviewprofile')->withSuccess('Your profile successfully updated.');
+
     }
 
     public function search(Request $request)

@@ -22,40 +22,44 @@
                 </div>
             </div>
             <div class="container">
-                <form action="javascript:void(0);">
+                <form  id="jobs_reg_form" action="{{ url('/jobsupdateprofile') }}" method="POST" enctype="multipart/form-data">
+
+                    @csrf
+
                     <div class="row">
                         <div class="col-lg-4 mb-box">
                             <div class="dash-data-card h-100 mb-0">
                                 <div class="profile-area">
                                     <div class="profile-image mb-5">
-                                        <img src="{{asset('assets')}}/images/default-user.png" alt="" class="profile-main-image" id="profileimg">
+                                       
+                                        @if (!empty(auth()->user()->uimage))
+                                            <img src="public/assets/photo/pic/{{ auth()->user()->uimage->image }}" class="profile-main-image" id="profileimg">
+                                        @else
+                                            <img src="public/assets/images/default-user.png" class="profile-main-image" id="profileimg">
+                                        @endif
                                         <div class="profile-change-btn">
-                                            <input accept="image/*" type='file' class="profileinput" />
+                                            <input accept="image/*" name="image" type='file' class="profileinput" />
                                             <img src="{{asset('assets')}}/images/dashboard/profile/edit-icon.png" alt="">
                                         </div>
                                     </div>
-                                    <div class="form-group floating-group">
-                                        <label class="floating-label">Name</label>
-                                        <input type="text" class="form-control floating-control" value="Alex John">
-                                    </div>
-                                    <div class="form-group floating-group">
-                                        <label class="floating-label">Position</label>
-                                        <input type="text" class="form-control floating-control" value="Ui / Ux Designer">
-                                    </div>
+                                    <h5 style="margin-top:0px">{{ auth()->user()->first_name ." ". auth()->user()->last_name }}</h5>
                                 </div>
                                 <div class="profile-box mb-2">
                                     <h5 class="profile-head">Skill</h5>
                                     <div class="form-group select2Part select2multipletags form-fade-group without-icon">
                                         <label class="fade-label">Skills</label>
-                                        <select class="form-control customSelectMultipleTags fade-control" multiple>
-                                            <option value="1" selected>Design</option>
-                                            <option value="2" selected>Graphic Designer</option>
-                                            <option value="3">Java</option>
-                                            <option value="4">Script</option>
-                                            <option value="5">HTML</option>
-                                            <option value="6">CSS</option>
+                                        <select name="skills[]" class="form-control customSelectMultipleTags fade-control" multiple required>
+                                             @php
+                                                 $skills = explode(",", auth()->user()->skills);
+                                             @endphp 
+                                             
+                                             @foreach ($skills as $item)
+                                                <option value="{{ $item }}" selected>{{ $item }}</option>
+                                             @endforeach
+
                                         </select>
                                     </div>
+                                    <div></div>
                                 </div>
                             </div>
                         </div>
@@ -67,95 +71,37 @@
                                         <div class="col-md-6">
                                             <div class="form-group floating-group profile-form-group">
                                                 <label class="floating-label">Mobile no</label>
-                                                <input type="text" class="form-control floating-control" value="+91 99*** ***00">
+                                                <input type="text" name="mobile_number" id="mobile_number" class="form-control floating-control" value="{{ auth()->user()->mobile_number }}" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group floating-group profile-form-group">
                                                 <label class="floating-label">Email id</label>
-                                                <input type="text" class="form-control floating-control" value="alexjohn@gmail.com">
+                                                <input type="text" name="email" id="email" class="form-control floating-control" value="{{ auth()->user()->email }}" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group floating-group profile-form-group">
                                                 <label class="floating-label">Job profile</label>
-                                                <input type="text" class="form-control floating-control" value="Sixtheeth Telecom">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group select2Part select2arrow floating-group without-icon profile-form-group">
-                                                <label class="floating-label">Location</label>
-                                                <select name="" id="" class="form-control customSelect floating-control">
-                                                    <option value="">Select City</option>
-                                                    <option value="City 1" selected>Surat</option>
-                                                    <option value="City 2">City 2</option>
-                                                    <option value="City 3">City 3</option>
-                                                    <option value="City 4">City 4</option>
-                                                </select>
+                                                <input type="text" name="job_profile" id="job_profile" class="form-control floating-control" value="{{ auth()->user()->job_profile }}" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group select2Part select2arrow floating-group without-icon profile-form-group">
                                                 <label class="floating-label">Preferred city for job</label>
-                                                <select name="" id="" class="form-control customSelect floating-control">
-                                                    <option value="">Select City</option>
-                                                    <option value="City 1" selected>Surat</option>
-                                                    <option value="City 2">City 2</option>
-                                                    <option value="City 3">City 3</option>
-                                                    <option value="City 4">City 4</option>
-                                                </select>
+                                                <input type="text" name="job_city" class="form-control floating-control" value="{{ auth()->user()->job_city }}" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group select2Part select2arrow floating-group without-icon profile-form-group">
                                                 <label class="floating-label">Education</label>
-                                                <select name="" id="" class="form-control customSelect floating-control">
-                                                    <option value="">Select Education</option>
-                                                    <option value="Education 1" selected>Mca</option>
-                                                    <option value="Education 2">Bca</option>
-                                                    <option value="Education 3">B.Com</option>
-                                                    <option value="Education 4">M.com</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group profile-form-group">
-                                                <div class="radio-group radio-group-with-label">
-                                                    <label class="form-label">Experience</label>
-                                                    <div class="radio-box">
-                                                        <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" name="exworkyesno" id="datayst" class="custom-control-input" checked>
-                                                            <label class="custom-control-label" for="datayst">Yes</label>
-                                                        </div>
-                                                        <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" name="exworkyesno" id="datanst" class="custom-control-input">
-                                                            <label class="custom-control-label" for="datanst">No</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group profile-form-group">
-                                                <div class="radio-group radio-group-with-label">
-                                                    <label class="form-label">Current working</label>
-                                                    <div class="radio-box">
-                                                        <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" name="curworkyesno" id="dataycr" class="custom-control-input" checked>
-                                                            <label class="custom-control-label" for="dataycr">Yes</label>
-                                                        </div>
-                                                        <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" name="curworkyesno" id="datancr" class="custom-control-input">
-                                                            <label class="custom-control-label" for="datancr">No</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <input type="text" name="education" class="form-control floating-control" value="{{ auth()->user()->education }}" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group floating-group profile-form-group">
                                                 <label class="floating-label">Current company</label>
-                                                <input type="text" class="form-control floating-control" value="Sixtheeth Telecom">
+                                                <input type="text" name="curlast_company" class="form-control floating-control" value="{{ auth()->user()->curlast_company }}" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -164,12 +110,12 @@
                                                     <label class="form-label">Job type</label>
                                                     <div class="radio-box">
                                                         <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" name="jtworkyesno" id="datayjt" class="custom-control-input" checked>
-                                                            <label class="custom-control-label" for="datayjt">Full Time</label>
+                                                            <input type="radio" name="job_time" id="full_time" class="custom-control-input" {{ auth()->user()->job_time == "Full Time" ? "checked" : "" }} value="Full Time" required>
+                                                            <label class="custom-control-label" for="full_time">Full Time</label>
                                                         </div>
                                                         <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" name="jtworkyesno" id="datanjt" class="custom-control-input">
-                                                            <label class="custom-control-label" for="datanjt">Part Time</label>
+                                                            <input type="radio" name="job_time" id="part_time" class="custom-control-input"  {{ auth()->user()->job_time == "Part Time" ? "checked" : "" }} required value="Part Time">
+                                                            <label class="custom-control-label" for="part_time">Part Time</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -178,24 +124,19 @@
                                         <div class="col-md-6">
                                             <div class="form-group floating-group profile-form-group">
                                                 <label class="floating-label">Salary (per month)</label>
-                                                <input type="text" class="form-control floating-control" value="15000">
+                                                <input type="text" name="salary" class="form-control floating-control" value="{{ auth()->user()->salary }}" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group select2Part select2arrow floating-group without-icon profile-form-group">
                                                 <label class="floating-label">Language</label>
-                                                <select name="" id="" class="form-control customSelect floating-control">
-                                                    <option value="">Select Education</option>
-                                                    <option value="Language 1" selected>English</option>
-                                                    <option value="Language 2">Gujarati</option>
-                                                    <option value="Language 3">Hindi</option>
-                                                </select>
+                                                <input type="text" name="language" class="form-control floating-control" value="{{ auth()->user()->language }}" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group floating-group profile-form-group">
                                                 <label class="floating-label">Age</label>
-                                                <input type="text" class="form-control floating-control" value="25">
+                                                <input type="text" name="age" class="form-control floating-control" value="{{ auth()->user()->age }}" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -204,31 +145,13 @@
                                                     <label class="form-label">Gender</label>
                                                     <div class="radio-box">
                                                         <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" name="genderdata" id="malege" class="custom-control-input" checked>
+                                                            <input type="radio" name="gender" id="malege" class="custom-control-input" {{ auth()->user()->gender == "Male" ? "checked" : "" }} value="Male" required>
                                                             <label class="custom-control-label" for="malege">Male</label>
                                                         </div>
                                                         <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" name="genderdata" id="femalege" class="custom-control-input">
+                                                            <input type="radio" name="gender" id="femalege" class="custom-control-input" {{ auth()->user()->gender == "Female" ? "checked" : "" }} value="Female" required>
                                                             <label class="custom-control-label" for="femalege">Female</label>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="profile-box">
-                                    <h5 class="profile-head">ID proof details</h5>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-set-data">
-                                                <div class="set-label">ID proof number</div>
-                                                <div class="set-input">1234567890</div>
-                                                <div class="set-image">
-                                                    <img src="{{asset('assets')}}/images/dashboard/profile/proof.jpg" alt="" id="proofimg">
-                                                    <div class="edit-proof-btn">
-                                                        <input type="file" id="proofinput">
-                                                        <img src="{{asset('assets')}}/images/dashboard/profile/edit-icon.png" alt="" class="proofiledit-icon">
                                                     </div>
                                                 </div>
                                             </div>
@@ -242,7 +165,7 @@
                         <div class="col-md-8">
                             <div class="buttons-group text-center">
                                 <button type="submit" class="default-btn">Save</button>
-                                <a href="jobseeker-view-profile.html" class="default-btn btn-red">Cancel</a>
+                                <a href="{{ url('/jobsviewprofile') }}" class="default-btn btn-red">Cancel</a>
                             </div>
                         </div>
                     </div>
@@ -252,4 +175,63 @@
 
     </div>
 
+@endsection
+
+
+
+@section('script')
+   <script>
+        $(document).ready(function () {
+
+            EMAIL = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}/;
+            NUMBER = /^[0-9 ]*$/;
+
+            $('#jobs_reg_form').validate({
+                rules: {
+                    email: {
+                        pattern: EMAIL,
+                        maxlength: 90,
+                        remote: {
+                                type: 'get',
+                                url: '{{ route("check_email_exists_in_users") }}',
+                                data: {
+                                    'email': function () {return $("#email").val(); }
+                                },
+                                dataFilter: function (data) {
+                                var json = JSON.parse(data);
+                                console.log(json.message)
+                                if (json.status == 0) {
+                                    return "\"" + json.message + "\"";
+                                } else {
+                                    return 'true';
+                                }
+                            }
+                        }
+                    },
+                    mobile_number: {
+                        required: true, 
+                        minlength:10,                       
+                        pattern: NUMBER,
+                        maxlength: 10,
+                        remote: {
+                            type: 'get',
+                            url: '{{ route("check_mobile_number_exists_in_users") }}',
+                            data: {
+                                'mobile_number': function () {return $("#mobile_number").val(); }
+                            },
+                            dataFilter: function (data) {
+                                var json = JSON.parse(data);
+                                if (json.status == 0) {
+                                    return "\"" + json.message + "\"";
+                                } else {
+                                    return 'true';
+                                }
+                            }
+                        }
+                    },
+                },
+            });
+            
+        });
+    </script>
 @endsection

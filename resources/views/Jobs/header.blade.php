@@ -32,6 +32,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/quill-snow.min.css">
     <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/croppie.css">
     <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/style.css" />
+    
+    <style>
+        label.error{
+            color: red;
+        }
+    </style>
 </head>
 <body class="dashboard-page header-white">
 <!-- loader -->
@@ -87,7 +93,7 @@
                             <div class="dropdown-menu">
                                 <div class="actions-links-data">
                                     <ul>
-                                        <li><a href="{{url('/jobseekerviewprofile')}}">View Profile</a></li>
+                                        <li><a href="{{url('/jobsviewprofile')}}">View Profile</a></li>
                                         <li>
                                             <form id="logout_form" action="{{ route('logout') }}" method="post">
                                                 @csrf

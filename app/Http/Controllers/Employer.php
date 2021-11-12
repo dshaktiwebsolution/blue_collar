@@ -227,6 +227,9 @@ class Employer extends Controller
     }
     public function employerviewprofile()
     {
+        // echo "<pre>";
+        // print_r(auth()->user()->uimage);
+        // exit;
         return view('Employer/employerviewprofile');
     }
 

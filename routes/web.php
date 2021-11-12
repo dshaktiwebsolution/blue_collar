@@ -10,6 +10,9 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\LinkedInController;
 
+use App\Http\Middleware\CheckUserType;
+
+
 
 
 Auth::routes();
@@ -32,6 +35,10 @@ Route::post('/verify_job_otp',[HomeController::class,'verify_job_otp'])->name('v
 Route::get('/check_email_exists_in_users',[HomeController::class,'check_email_exists_in_users'])->name('check_email_exists_in_users');
 Route::get('/check_mobile_number_exists_in_users',[HomeController::class,'check_mobile_number_exists_in_users'])->name('check_mobile_number_exists_in_users');
 
+Route::get('/admin_login',[Admin::class,'admin_login']);
+Route::post('/check_admin',[Admin::class,'check_admin'])->name("check_admin");
+
+
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name("auth_gogole");
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name("google_auth_callback");
 
@@ -41,15 +48,17 @@ Route::get('auth/facebook/callback', [FacebookController::class, 'handleFacebook
 Route::get('auth/linkedin', [LinkedInController::class, 'redirectToLinkedin'])->name("auth_linkedin");
 Route::get('auth/linkedin/callback', [LinkedInController::class, 'handleLinkedinCallback'])->name("linkedin_auth_callback");
 
-Route::group(['middleware' => 'auth'], function () {
-    
+
+Route::middleware(['auth','checkUserType:3'])->group(function () {
     Route::get('/admin',[Admin::class,'inactive']);
     Route::get('/inactive',[Admin::class,'inactive']);
     Route::get('/active',[Admin::class,'active']);
     Route::get('/detail/{id}',[Admin::class,'detail']);
     Route::get('/inactivestatus/{id}',[Admin::class,'inactivestatus']);
-    // Route::get('/getwhats',[HomeController::class,'getwhats']);
+    Route::get('/users',[Admin::class,'users']);
+});
 
+Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/employer-edit-post/{job_slug}',[Employer::class,'employereditpost']);
     Route::post('/frompost',[Employer::class,'frompost']);
@@ -76,5 +85,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/jobs-detail/{job_slug}',[Jobs::class,'jobs_detail']);
     Route::get('/jobsviewprofile',[Jobs::class,'jobsviewprofile']);
     Route::get('/jobseditprofile',[Jobs::class,'jobseditprofile']);
+    Route::post('/jobsupdateprofile',[Jobs::class,'jobsupdateprofile']);
     Route::get('/search',[Jobs::class,'search']);
 });

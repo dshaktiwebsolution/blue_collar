@@ -59,6 +59,7 @@
                     <ul class="d-lg-flex menu-lists">
                         <li class="{{ Request::is('inactive*') ? 'active' : '' }}"><a href="{{url('/inactive')}}">Inactive</a></li>
                         <li class="{{ Request::is('active*') ? 'active' : '' }}"><a href="{{url('/active')}}">Active</a></li>
+                        <li class="{{ Request::segment(1) == 'users' ? 'active' : '' }}"><a href="{{url('/users')}}">Users</a></li>
 
                     </ul>
                 </nav>

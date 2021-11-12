@@ -67,4 +67,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function uimage()
+    {
+        return $this->hasOne(Uimage::class,'u_id','id');
+    }
+
 }

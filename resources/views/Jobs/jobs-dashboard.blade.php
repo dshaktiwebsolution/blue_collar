@@ -78,7 +78,7 @@
                                                         <div class="skill-icon">
                                                             <img src="{{asset('assets')}}/images/dashboard/skill/circle.png" alt="">
                                                         </div>
-                                                        <span>5 applied</span>
+                                                        <span>{{ \DB::table("user_jobs")->whereJobId($val->id)->count() }} applied</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -87,7 +87,6 @@
                                 @endforeach
                             </div>
                             
-                            {!! $job_based_skills->links() !!}
                             <img src="{{asset('assets')}}/images/dashboard/pattern/4.png" class="card-pattern" alt="">
                         </div>
                     </div>

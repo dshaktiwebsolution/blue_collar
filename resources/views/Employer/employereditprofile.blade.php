@@ -30,12 +30,9 @@
                             <div class="dash-data-card h-100 mb-0 min-height">
                                 <div class="profile-area border-0 employer-profile">
                                     <div class="profile-image">
-                                        @php
-                                            $uimages = \DB::table('uimages')->whereUId(auth()->user()->id)->first();
-                                        @endphp
 
-                                        @if (!empty($uimages) && $uimages->image != "")
-                                            <img src="public/assets/photo/pic/{{ $uimages->image }}" class="profile-main-image"  id="profileimg">
+                                        @if (!empty(auth()->user()->uimage))
+                                            <img src="public/assets/photo/pic/{{ auth()->user()->uimage->image }}" class="profile-main-image"  id="profileimg">
                                         @else
                                             <img src="public/assets/images/default-user.png" class="profile-main-image"  id="profileimg">
                                         @endif

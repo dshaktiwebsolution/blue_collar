@@ -173,8 +173,7 @@ class HomeController extends Controller
 
     public function empcheck(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'user_type' => 0]) || Auth::attempt(['email' => $request->email, 'password' => $request->password, 'user_type' => 1])) {
             return redirect("/employer-dashboard")->withSuccess('You have Successfully loggedin');
         }
         return redirect("/employer-login")->with('error', 'E-Mail Id and Password Invalid');
