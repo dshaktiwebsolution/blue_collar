@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\User;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -55,5 +56,45 @@ class Admin extends Controller
                 })->orderBy('id','DESC')->where('user_type','!=',3)->get();
 
         return view('Admin/users', compact('users'));
+    }
+
+    public function plans(Request $request){
+        $plans = Plan::get();
+
+        return view('Admin/plans', compact('plans'));
+    }
+
+    public function add_plan(Request $request){
+        return view('Admin/add_plan');
+    }
+
+    public function save_plan(Request $request){
+
+        Plan::create($request->all());
+        return redirect('/plans')->with("success","Plan created successfully.");
+    }
+
+    public function edit_plan(Request $request){
+        $plan  = Plan::find($request->id);
+        return view('Admin/edit_plan', compact('plan'));
+    }
+
+    public function update_plan(Request $request, $id){
+        
+        $plan = array(
+            "title" => $request->title,
+            "price" => $request->price,
+            "description" => $request->description,
+            "duration" => $request->duration,
+            "status" => $request->status,
+        );
+        Plan::whereId($id)->update($plan);
+        return redirect('/plans')->with("success","Plan updated successfully.");
+    }
+
+    public function delete_plan($id){
+        $plan = Plan::find($id);
+        $plan->delete();
+        return redirect('/plans')->with("success","Plan deleted successfully.");
     }
 }

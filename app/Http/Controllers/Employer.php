@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\User;
+use App\Models\Plan;
 use App\Models\UserJob;
 use App\Models\Uimage;
 use Illuminate\Http\Request;
@@ -431,4 +432,25 @@ class Employer extends Controller
     }
 
 
+    public function subscription_plan(){
+        $data['plans'] = Plan::whereStatus(1)->get();
+        return view('Employer/subscription_plan',$data);
+    }
+
+    public function save_subscription_plan(Request $request, $id){
+
+        $end_date = date('Y-m-d', strtotime("+3 months", strtotime(date("Y-m-d"))));
+
+        $plan_book = array(
+            "plan_id" => $id,
+            "user_id" => auth()->user()->id,
+            "start_date" => date("Y-m-d"),
+            "end_date" => $end_date,
+            "payment" => ($request->price == 0 ? 1 : 0)
+        );
+
+        \DB::table("plan_book")->insert($plan_book);
+
+        return redirect('/subscription_plan')->with('success','Subscription plan buy successfully.');
+    }
 }

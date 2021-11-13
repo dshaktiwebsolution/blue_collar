@@ -34,11 +34,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/croppie.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/style.css" />
 
-    
+
     <style>
-        label.error{
+        label.error {
             color: red;
         }
+
     </style>
 </head>
 
@@ -76,6 +77,8 @@
                                     href="{{ url('/active-jobs') }}">Active Jobs</a></li>
                             <li class="{{ Request::is('inactive-jobs*') ? 'active' : '' }}"><a
                                     href="{{ url('/inactive-jobs') }}">Inactive Jobs</a></li>
+                            <li class="{{ Request::is('inactive-jobs*') ? 'active' : '' }}"><a
+                                    href="{{ url('/subscription_plan') }}">Subscription Plan</a></li>
                             <!-- <li class="d-lg-none"><a href="signup-as-employer-or-jobseeker.html">Sign Up</a></li>
                         <li class="d-lg-none"><a href="login-as-employer-or-jobseeker.html">Sign In</a></li> -->
                         </ul>
@@ -105,7 +108,8 @@
                                             <li>
                                                 <form id="logout_form" action="{{ route('logout') }}" method="post">
                                                     @csrf
-                                                    <a href="javascript:{}" onclick="document.getElementById('logout_form').submit();">Logout</a>
+                                                    <a href="javascript:{}"
+                                                        onclick="document.getElementById('logout_form').submit();">Logout</a>
                                                 </form>
                                             </li>
                                         </ul>

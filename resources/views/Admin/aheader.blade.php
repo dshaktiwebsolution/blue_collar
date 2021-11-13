@@ -60,7 +60,16 @@
                         <li class="{{ Request::is('inactive*') ? 'active' : '' }}"><a href="{{url('/inactive')}}">Inactive</a></li>
                         <li class="{{ Request::is('active*') ? 'active' : '' }}"><a href="{{url('/active')}}">Active</a></li>
                         <li class="{{ Request::segment(1) == 'users' ? 'active' : '' }}"><a href="{{url('/users')}}">Users</a></li>
+                        <li class="{{ Request::segment(1) == 'plans' ? 'active' : '' }}"><a href="{{url('/plans')}}">Plans</a></li>
 
+                        <li>
+                            <form id="logout_form" action="{{ route('logout') }}"
+                                method="post">
+                                @csrf
+                                <a href="javascript:{}"
+                                    onclick="document.getElementById('logout_form').submit();">Logout</a>
+                            </form>
+                        </li>
                     </ul>
                 </nav>
             </div>

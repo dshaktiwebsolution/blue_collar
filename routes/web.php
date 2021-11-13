@@ -56,6 +56,12 @@ Route::middleware(['auth','checkUserType:3'])->group(function () {
     Route::get('/detail/{id}',[Admin::class,'detail']);
     Route::get('/inactivestatus/{id}',[Admin::class,'inactivestatus']);
     Route::get('/users',[Admin::class,'users']);
+    Route::get('/plans',[Admin::class,'plans']);
+    Route::get('/add_plan',[Admin::class,'add_plan']);
+    Route::post('/save_plan',[Admin::class,'save_plan']);
+    Route::delete('/delete_plan/{id}',[Admin::class,'delete_plan'])->name('delete_plan');
+    Route::get('/edit_plan',[Admin::class,'edit_plan'])->name('edit_plan');
+    Route::post('/update_plan/{id}',[Admin::class,'update_plan'])->name('update_plan');
 });
 
 Route::middleware(['auth','checkUserType:0,1'])->group(function () {
@@ -75,6 +81,8 @@ Route::middleware(['auth','checkUserType:0,1'])->group(function () {
     Route::post('/update-job-post/{id}',[Employer::class,'update_job_post']);
     Route::get('/employer-delete-post/{id}',[Employer::class,'employer_delete_post']);
     Route::get('/employer-repost-job/{id}',[Employer::class,'employer_repost_job']);
+    Route::get('/subscription_plan',[Employer::class,'subscription_plan']);
+    Route::post('/save_subscription_plan/{id}',[Employer::class,'save_subscription_plan'])->name('save_subscription_plan');
 
 });
 
