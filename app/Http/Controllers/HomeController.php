@@ -212,7 +212,36 @@ class HomeController extends Controller
         }
         
     }
+
+    public function forget_password(){
+        return view("auth/employer/forget_password");
+    }
    
+    public function submit_forget_password(Request $request){
+
+        $user = User::whereEmail($request->email)->first();
+        
+        if(empty($user)){
+            return redirect('/forget_password')->with("error", "Email address not found.");
+        } else {
+            $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            $password = substr(str_shuffle($chars),0,8);
+            $user_arr = array(
+                "password" => Hash::make($password)
+            );
+            User::whereId($user->id)->update($user_arr);
+
+            $details = [
+                'email' => $user->email,
+                'password' => $password
+            ];
+           
+            \Mail::to($user->email)->send(new \App\Mail\ForgetPassword($details));
+
+            return redirect('/employer-login')->with("success", "Email address not found.");
+        }
+    }
+
     public function check_email_exists_in_users(Request $request){
         $id = '';
         if(Auth()->user()){

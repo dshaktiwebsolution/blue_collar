@@ -32,6 +32,8 @@ Route::get('/job-login',[HomeController::class,'job_login']);
 Route::post('/empcheck',[HomeController::class,'empcheck'])->name('empcheck');
 Route::post('/jobcheck',[HomeController::class,'jobcheck'])->name('jobcheck');
 Route::post('/verify_job_otp',[HomeController::class,'verify_job_otp'])->name('verify_job_otp');
+Route::get('/forget_password',[HomeController::class,'forget_password'])->name('forget_password');
+Route::post('/submit_forget_password',[HomeController::class,'submit_forget_password'])->name('submit_forget_password');
 Route::get('/check_email_exists_in_users',[HomeController::class,'check_email_exists_in_users'])->name('check_email_exists_in_users');
 Route::get('/check_mobile_number_exists_in_users',[HomeController::class,'check_mobile_number_exists_in_users'])->name('check_mobile_number_exists_in_users');
 

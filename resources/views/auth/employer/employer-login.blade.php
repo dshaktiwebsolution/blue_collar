@@ -66,7 +66,7 @@
                             </div>
                             <div class="col-md-12 p-0">
                                 <div class="forgrot-link">
-                                    <a href="forgot-password.html">Forget Password</a>
+                                    <a href="{{ route('forget_password') }}">Forget Password</a>
                                 </div>
                             </div>
                             <div class="col-md-12 p-0">
