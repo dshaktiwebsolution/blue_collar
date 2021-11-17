@@ -14,9 +14,9 @@ class CheckUserType
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $user_type = null)
+    public function handle(Request $request, Closure $next, $user_type_1 = null, $user_type_2 = null)
     {
-        if (auth()->user()->user_type == $user_type) {
+        if (auth()->user()->user_type == $user_type_1 || auth()->user()->user_type == $user_type_2) {
             return $next($request);
         }
 

@@ -230,7 +230,7 @@ class HomeController extends Controller
                 "password" => Hash::make($password)
             );
             User::whereId($user->id)->update($user_arr);
-
+            
             $details = [
                 'email' => $user->email,
                 'password' => $password
@@ -238,7 +238,7 @@ class HomeController extends Controller
            
             \Mail::to($user->email)->send(new \App\Mail\ForgetPassword($details));
 
-            return redirect('/employer-login')->with("success", "Email address not found.");
+            return redirect('/employer-login')->with("success", "Check your email address.");
         }
     }
 
