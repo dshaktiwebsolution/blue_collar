@@ -32,17 +32,17 @@ return [
     'google' => [
         'client_id' => '876888259878-6a42p9b6dugrjjoi4215059pmsgd5rkq.apps.googleusercontent.com',
         'client_secret' => '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',
-        'redirect' => 'http://localhost/blue_collar/auth/google/callback',
+        'redirect' => 'https://bluecollar.libertyinfoscience.com/auth/google/callback',
     ],
     'facebook' => [
         'client_id' => '4668243989899263',
         'client_secret' => '4741a6ead117e01d341844834a6d13fd',
-        'redirect' => 'http://localhost/blue_collar/auth/facebook/callback',
+        'redirect' => 'https://bluecollar.libertyinfoscience.com/auth/facebook/callback',
     ],
     'linkedin' => [
         'client_id' => '780fvjaq5v61vp',
         'client_secret' => 'ipm3wW8th8LjSdFV',
-        'redirect' => 'http://localhost/blue_collar/auth/linkedin/callback'
+        'redirect' => 'https://bluecollar.libertyinfoscience.com/auth/linkedin/callback'
     ],
 
 ];
